@@ -1,4 +1,6 @@
+import entities.Departments;
 import entities.Employee;
+import entities.EmployeeAddress;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import util.HibernateUtil;
@@ -10,7 +12,19 @@ public class Application {
 
     public static void main(String[] args) {
 
-        deleteAll();
+        EmployeeAddress ea =
+                new EmployeeAddress(1, "Кое где 15");
+        Departments d1 =
+                new Departments(1, "IT");
+        Employee e1 = new Employee(1, "one", 56, ea, d1);
+
+
+        createEmployeeAddress(ea);
+        create(e1);
+
+
+
+        /*deleteAll();
 
         Employee e1 = new Employee(1, "one", 56);
         Employee e2 = new Employee(2, "two", 46);
@@ -24,14 +38,25 @@ public class Application {
                 .forEach(System.out::println);
 
         Employee e4 = new Employee(3, "three new", 26);
-        update(e4);
+        update(e4);*/
     }
 
     public static Integer create(Employee e) {
         Session session =
                 HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        session.save(e);
+        session.saveOrUpdate(e);
+        session.getTransaction().commit();
+        session.close();
+        System.out.println("Успешно создан " + e.toString());
+        return e.getId();
+    }
+
+    public static Integer createEmployeeAddress(EmployeeAddress e) {
+        Session session =
+                HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.saveOrUpdate(e);
         session.getTransaction().commit();
         session.close();
         System.out.println("Успешно создан " + e.toString());

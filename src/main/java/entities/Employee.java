@@ -17,15 +17,46 @@ public class Employee {
     @Column(name="age")
     private Integer age;
 
+    @OneToOne
+    @JoinColumn(name = "id_address")
+    private EmployeeAddress employeeAddress;
+
+    @OneToOne
+    @JoinColumn(name = "id_depts")
+    private Departments departments;
+
     public Employee() {
     }
 
-    public Employee(Integer id, String name, Integer age) {
+    public Departments getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(Departments departments) {
+        this.departments = departments;
+    }
+
+    public Employee(Integer id, String name, Integer age, EmployeeAddress employeeAddress, Departments departments) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.employeeAddress = employeeAddress;
+        this.departments = departments;
+    }
+
+    public EmployeeAddress getEmployeeAddress() {
+        return employeeAddress;
+    }
+
+    public void setEmployeeAddress(EmployeeAddress employeeAddress) {
+        this.employeeAddress = employeeAddress;
+    }
+
+    /*public Employee(Integer id, String name, Integer age) {
         this.id = id;
         this.name = name;
         this.age = age;
     }
-
     public Employee(String name, int age) {
         this.name = name;
         this.age = age;
@@ -35,7 +66,7 @@ public class Employee {
         this.id = id;
         this.name = name;
         this.age = age;
-    }
+    }*/
 
     public Integer getId() {
         return id;
