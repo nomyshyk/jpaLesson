@@ -14,5 +14,6 @@
         <mapping class="entities.Employee"/>
         <mapping class="entities.EmployeeAddress"/>
         <mapping class="entities.Departments"/>
+        <mapping class="entities.Country"/>
     </session-factory>
 </hibernate-configuration>

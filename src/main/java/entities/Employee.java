@@ -3,7 +3,7 @@ package entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "employee")
+@Table(name = "employee_my")
 public class Employee {
 
     @Id
@@ -21,9 +21,13 @@ public class Employee {
     @JoinColumn(name = "id_address")
     private EmployeeAddress employeeAddress;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_depts")
     private Departments departments;
+
+    @ManyToOne
+    @JoinColumn(name = "id_country")
+    private Country country;
 
     public Employee() {
     }
@@ -36,13 +40,13 @@ public class Employee {
         this.departments = departments;
     }
 
-    public Employee(Integer id, String name, Integer age, EmployeeAddress employeeAddress, Departments departments) {
+    /*public Employee(Integer id, String name, Integer age, EmployeeAddress employeeAddress, Departments departments) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.employeeAddress = employeeAddress;
         this.departments = departments;
-    }
+    }*/
 
     public EmployeeAddress getEmployeeAddress() {
         return employeeAddress;
@@ -97,4 +101,19 @@ public class Employee {
         return "Сотрудник: " + this.id + ", " + this.name + ", " + this.age;
     }
 
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    public Employee(Integer id, String name, Integer age, Departments departments, Country country) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.departments = departments;
+        this.country = country;
+    }
 }

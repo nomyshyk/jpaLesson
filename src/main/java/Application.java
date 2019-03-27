@@ -12,15 +12,15 @@ public class Application {
 
     public static void main(String[] args) {
 
-        EmployeeAddress ea =
+        /*EmployeeAddress ea =
                 new EmployeeAddress(1, "Кое где 15");
         Departments d1 =
                 new Departments(1, "IT");
-        Employee e1 = new Employee(1, "one", 56, ea, d1);
+        Employee e1 = new Employee(1, "one", 56, d1);
 
 
         createEmployeeAddress(ea);
-        create(e1);
+        create(e1);*/
 
 
 
