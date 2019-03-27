@@ -42,16 +42,24 @@ public class Jpa3 {
                     " " + employee.getAge());
         };*/
 
-        List<Employee> emps = session.createQuery("select e from Employee e " +
-                "where e.department.id = :dep and e.country.id = :cnt")
+        Country emps =
+                (Country) session.createQuery("select distinct e.country " +
+                        "from Employee e " +
+                "where e.departments.name = :dep and e.country.name = :cnt")
                 .setParameter("dep", "IT")
                 .setParameter("cnt", "KG")
-                .list();
+                .uniqueResult();
 
-        for( Employee employee : emps){
+        /*for( Employee employee : emps){
             System.out.println(employee.getName() +
                     " " + employee.getAge());
-        }
+        }*/
+
+        session.createQuery("select e " +
+                        "from Employee e " +
+                        "order by e.salary desc")
+                        .setMaxResults(3)
+                        .list();
         session.close();
 
     }
