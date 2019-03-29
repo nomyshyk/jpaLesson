@@ -9,10 +9,10 @@
         <property name="hibernate.connection.username">postgres</property>
         <property name="hibernate.connection.password">postgres</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL9Dialect</property>
-        <property name="hibernate.hbm2ddl.auto">validate</property>
+        <property name="hibernate.hbm2ddl.auto">none</property>
+        <property name="hibernate.temp.use_jdbc_metadata_defaults">false</property>
         <property name="show_sql">true</property>
         <mapping class="entities.Employee"/>
-        <mapping class="entities.EmployeeAddress"/>
         <mapping class="entities.Departments"/>
         <mapping class="entities.Country"/>
     </session-factory>

@@ -6,27 +6,30 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "countryAl")
+@Table(name = "country_ali")
 public class Country {
+
     @Id
-    private int id;
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
 
     @Column(name = "name")
     private String name;
 
-    public Country() {
-    }
-
-    public Country(int id, String name) {
+    public Country(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public int getId() {
+    public Country() {
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

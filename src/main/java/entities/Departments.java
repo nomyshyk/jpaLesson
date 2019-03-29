@@ -6,25 +6,30 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "departments2")
-
+@Table(name = "dept_ali")
 public class Departments {
+
     @Id
-    private int id;
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
 
     @Column(name = "name")
     private String name;
 
-    public Departments(int id, String name) {
+    public Departments(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public int getId() {
+    public Departments() {
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -36,3 +41,4 @@ public class Departments {
         this.name = name;
     }
 }
+

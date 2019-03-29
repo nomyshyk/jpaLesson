@@ -3,11 +3,10 @@ package entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "employee_my")
+@Table(name = "employee_ali")
 public class Employee {
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
@@ -17,60 +16,41 @@ public class Employee {
     @Column(name="age")
     private Integer age;
 
-    @OneToOne
-    @JoinColumn(name = "id_address")
-    private EmployeeAddress employeeAddress;
 
-    @ManyToOne
-    @JoinColumn(name = "id_depts")
-    private Departments departments;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_dept")
+    private Departments department;
 
-    @ManyToOne
-    @JoinColumn(name = "id_country")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_county")
     private Country country;
+
+
+    public Departments getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Departments department) {
+        this.department = department;
+    }
+
+    public Employee(Integer id, String name, Integer age, Departments department) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.department = department;
+    }
 
     public Employee() {
     }
 
-    public Departments getDepartments() {
-        return departments;
-    }
-
-    public void setDepartments(Departments departments) {
-        this.departments = departments;
-    }
-
-    /*public Employee(Integer id, String name, Integer age, EmployeeAddress employeeAddress, Departments departments) {
+    public Employee(Integer id, String name, Integer age, Departments department, Country country) {
         this.id = id;
         this.name = name;
         this.age = age;
-        this.employeeAddress = employeeAddress;
-        this.departments = departments;
-    }*/
-
-    public EmployeeAddress getEmployeeAddress() {
-        return employeeAddress;
+        this.department = department;
+        this.country = country;
     }
-
-    public void setEmployeeAddress(EmployeeAddress employeeAddress) {
-        this.employeeAddress = employeeAddress;
-    }
-
-    /*public Employee(Integer id, String name, Integer age) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-    }
-    public Employee(String name, int age) {
-        this.name = name;
-        this.age = age;
-    }
-
-    public Employee(int id, String name, int age) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-    }*/
 
     public Integer getId() {
         return id;
@@ -96,11 +76,6 @@ public class Employee {
         this.age = age;
     }
 
-    @Override
-    public String toString() {
-        return "Сотрудник: " + this.id + ", " + this.name + ", " + this.age;
-    }
-
     public Country getCountry() {
         return country;
     }
@@ -109,11 +84,9 @@ public class Employee {
         this.country = country;
     }
 
-    public Employee(Integer id, String name, Integer age, Departments departments, Country country) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.departments = departments;
-        this.country = country;
+    @Override
+    public String toString() {
+        return "РЎРѕС‚СЂСѓРґРЅРёРє: " + this.id + ", " + this.name + ", " + this.age;
     }
+
 }
